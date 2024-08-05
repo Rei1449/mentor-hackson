@@ -45,3 +45,5 @@
 | name | string | 名前 | |
 | email | string | メールアドレス | unique |
 | password | string | パスワード | hash |
+
+aiueo
