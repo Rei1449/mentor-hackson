@@ -7,6 +7,6 @@ services:
       - "3020:3000"
     volumes:
       - .:/app
-    command: npm run dev
+    command: /bin/sh -c 'npm install && npm run dev'
     environment:
       - WATCHPACK_POLLING=true

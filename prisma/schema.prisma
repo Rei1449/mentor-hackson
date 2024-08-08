@@ -10,5 +10,22 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String
+  posts Post[]
+}
+
+// 一旦、キャラクターのidはない状態で作成
+model Post {
+  id Int @id @default(autoincrement())
+  body String
+  point Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  createdAt DateTime @default(now())
 }
