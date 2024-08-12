@@ -1,3 +1,4 @@
+import PostList from '@/features/post/components/post-list';
 import { WelcomeHader } from "@/components/header"
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <>
       <WelcomeHader />
       <div>テスト</div>
+      <PostList />
     </>
   );
 }
