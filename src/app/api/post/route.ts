@@ -23,3 +23,29 @@ export const GET = async (req: Request) => {
     await prisma.$disconnect();
   }
 }
+
+export const POST = async (req: Request, res: NextResponse) => {
+  const { body, userEmail } = await req.json();
+  try {
+    await connect();
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+    });
+    
+    const post = await prisma.post.create({
+      data: {
+        body: body,
+        point: 100,
+        userId: user.id
+      }
+    });
+    return NextResponse.json({ message: "投稿完了"}, { status: 200 })
+  } catch (error) {
+      return NextResponse.json({ messeage: "投稿失敗" }, { status: 500 })
+  } finally {
+      await prisma.$disconnect();
+  }
+}
