@@ -1,12 +1,12 @@
 import prisma from '@/libs/prismaClient';
 import { NextResponse } from 'next/server';
 
-export const connect = async () => {
-    try {
-        prisma.$connect();
-    } catch (error) {
-        return Error("Database connection failed")
-    }
+const connect = async () => {
+  try {
+    prisma.$connect();
+  } catch (error) {
+    return Error("Database connection failed")
+  }
 }
 
 export const GET = async (req: Request) => {
