@@ -1,6 +1,6 @@
 export type Post = {
   id: number
   body: string
-  created_at: Date
+  created_at: string
   userId: string
 };

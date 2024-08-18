@@ -1,10 +1,6 @@
 import { Post } from '@/features/post/types/post';
 import { getPostList, addPost } from '@/features/post/api/post-api';
 
-type post = {
-  posts: Post[];
-}
-
 export default async function PostList() {
 
   const postList = await getPostList()
@@ -13,7 +9,7 @@ export default async function PostList() {
     <>
     <h1>投稿一覧</h1>
     
-    {postList.map((post:post) => (
+    {postList.map((post: Post) => (
       <div key={post.id}>
         <h2>{post.id} {post.body}</h2>
         <p>{post.created_at}</p>
