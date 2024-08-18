@@ -34,6 +34,10 @@ export const POST = async (req: Request, res: NextResponse) => {
         email: userEmail,
       },
     });
+
+    if (!user) {
+      return NextResponse.json({ message: "ユーザーが見つかりません" }, { status: 404 });
+    }
     
     const post = await prisma.post.create({
       data: {
