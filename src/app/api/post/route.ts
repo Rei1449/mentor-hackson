@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 const connect = async () => {
   try {
-    prisma.$connect();
+    await prisma.$connect();
   } catch (error) {
     return Error("Database connection failed")
   }
@@ -24,7 +24,7 @@ export const GET = async (req: Request) => {
   }
 }
 
-export const POST = async (req: Request, res: NextResponse) => {
+export const POST = async (req: Request) => {
   const { body, userEmail } = await req.json();
   try {
     await connect();
