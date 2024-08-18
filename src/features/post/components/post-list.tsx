@@ -1,32 +1,40 @@
 import { Post } from '@/features/post/types/post';
+import { getPostList, addPost } from '@/features/post/api/post-api';
 
-const getPostList = async () => {
-  // const res = await fetch('http://localhost:3020/api/post')
-  const res = await fetch('http://host.docker.internal:3020/api/post'); // docker環境の場合
-  const json = await res.json()
-  return json.posts
-}
+export async function PostList() {
 
-type post = {
-  posts: Post[];
-}
+  const postList = await getPostList() || [];
 
-export default async function PostList() {
+  if (postList.length === 0) {
+    return (
+      <>
+      <h1>投稿一覧</h1>
+      <p>投稿がありません。</p>
 
-  const postList = await getPostList()
+      <form action={addPost}>
+      <input type="text" name="text" placeholder="New post..." />
+      <button>Add Post</button>
+      </form>
+      </>
+    );
+  }
 
   return (
     <>
     <h1>投稿一覧</h1>
     
-    {postList.map((post:post) => (
+    {postList.map((post: Post) => (
       <div key={post.id}>
         <h2>{post.id} {post.body}</h2>
-        <p>{post.created_at}</p>
+        <p>{post.createdAt}</p>
         <p>{post.userId}</p>
       </div>
     ))}
+
+    <form action={addPost}>
+      <input type="text" name="text" placeholder="New post..." />
+      <button>Add Post</button>
+    </form>
     </>
   );
 }
-
