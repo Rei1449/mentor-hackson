@@ -10,6 +10,11 @@ export default async function PostList() {
       <>
       <h1>投稿一覧</h1>
       <p>投稿がありません。</p>
+
+      <form action={addPost}>
+      <input type="text" name="text" placeholder="New post..." />
+      <button>Add Post</button>
+      </form>
       </>
     );
   }
