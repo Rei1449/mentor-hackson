@@ -1,6 +1,6 @@
 import { LoginHeader } from "@/components/header";
 import { Inter } from "next/font/google";
-import { PostList } from '@/features/post/components/post-list';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +12,10 @@ export default function DashBoardLayout({
   return (
     <div>
       <LoginHeader />
+      <Link href="/dashboard/post">
+        投稿一覧
+      </Link>
       {children}
-      <PostList />
     </div>
   );
 }
