@@ -48,7 +48,7 @@ export const POST = async (req: Request, res: NextResponse) => {
     });
     return NextResponse.json({ message: "投稿完了"}, { status: 200 })
   } catch (error) {
-      return NextResponse.json({ messeage: "投稿失敗" }, { status: 500 })
+      return NextResponse.json({ message: "投稿失敗" }, { status: 500 })
   } finally {
       await prisma.$disconnect();
   }
