@@ -42,7 +42,7 @@ export const POST = async (req: Request) => {
     const post = await prisma.post.create({
       data: {
         body: body,
-        point: 100,
+        point: 100, // とりあえず投稿されたら全部100点に設定してます
         userId: user.id
       }
     });
