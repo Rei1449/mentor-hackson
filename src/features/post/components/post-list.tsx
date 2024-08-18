@@ -26,6 +26,7 @@ export async function PostList() {
     {postList.map((post: Post) => (
       <div key={post.id}>
         <h2>{post.id} {post.body}</h2>
+        <p>{post.point}点</p>
         <p>{post.createdAt}</p>
         <p>{post.userId}</p>
       </div>
