@@ -1,7 +1,7 @@
 import { Post } from '@/features/post/types/post';
 import { getPostList, addPost } from '@/features/post/api/post-api';
 
-export default async function PostList() {
+export async function PostList() {
 
   const postList = await getPostList() || [];
 
