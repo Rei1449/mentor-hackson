@@ -3,7 +3,16 @@ import { getPostList, addPost } from '@/features/post/api/post-api';
 
 export default async function PostList() {
 
-  const postList = await getPostList()
+  const postList = await getPostList() || [];
+
+  if (postList.length === 0) {
+    return (
+      <>
+      <h1>投稿一覧</h1>
+      <p>投稿がありません。</p>
+      </>
+    );
+  }
 
   return (
     <>
