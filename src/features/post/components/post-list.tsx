@@ -12,7 +12,7 @@ export default async function PostList() {
     {postList.map((post: Post) => (
       <div key={post.id}>
         <h2>{post.id} {post.body}</h2>
-        <p>{post.created_at}</p>
+        <p>{post.createdAt}</p>
         <p>{post.userId}</p>
       </div>
     ))}
