@@ -12,7 +12,11 @@ const connect = async () => {
 export const GET = async (req: Request) => {
   try {
     await connect();
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      include : {
+        likes : true
+      }
+    });
 
     return NextResponse.json({posts},{ status: 200 })
 

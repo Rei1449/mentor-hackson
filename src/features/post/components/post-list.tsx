@@ -1,9 +1,14 @@
 import { Post } from '@/features/post/types/post';
 import { getPostList, addPost } from '@/features/post/api/post-api';
+import Like from '@/features/like/components/like';
+import { auth } from '@/libs/auth';
 
 export async function PostList() {
 
   const postList = await getPostList() || [];
+  const session = await auth();
+
+  console.log(session);
 
   if (postList.length === 0) {
     return (
@@ -29,6 +34,7 @@ export async function PostList() {
         <p>{post.point}点</p>
         <p>{post.createdAt}</p>
         <p>{post.userId}</p>
+        <Like likes={post.likes} userId={session?.user?.id} postId={post.id}></Like>
       </div>
     ))}
 

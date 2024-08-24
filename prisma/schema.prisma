@@ -45,10 +45,12 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  password      String?
   image         String?
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  likes         Like[]
 }
 
 model VerificationToken {
@@ -61,10 +63,19 @@ model VerificationToken {
 
 // 一旦、キャラクターのidはない状態で作成
 model Post {
-  id Int @id @default(autoincrement())
-  body String
-  point Int
-  user User @relation(fields: [userId], references: [id])
-  userId String
+  id        Int @id @default(autoincrement())
+  body      String
+  point     Int
+  user      User @relation(fields: [userId], references: [id])
+  userId    String
+  likes     Like[]
   createdAt DateTime @default(now())
+}
+
+model Like {
+  id      Int @id @default(autoincrement())
+  user    User @relation(fields: [userId], references: [id])
+  userId  String
+  post    Post @relation(fields: [postId], references: [id])
+  postId  Int
 }

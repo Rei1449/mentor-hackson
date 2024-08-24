@@ -1,14 +1,15 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@/libs/auth";
+import PRISMAURL, {DOCKERPRISMAURL} from "@/develop";
 
 export const getPostList = async () => {
   try {
-    const res = await fetch('https://mentor-hackson.vercel.app/api/post', { cache: 'no-store' })
-    // const res = await fetch('http://host.docker.internal:3020/api/post', { cache: 'no-store' }); // ローカル環境の場合
+    const res = await fetch(DOCKERPRISMAURL + '/api/post', { cache: 'no-store' });
     if (!res.ok) {
       throw new Error("postを取得できませんでした");
     }
     const json = await res.json()
+
     return json.posts
   } catch (error) {
     console.error(error);
@@ -28,8 +29,7 @@ export const addPost = async (formData: FormData) => {
   const text: FormDataEntryValue | null = formData.get('text')
   if (!text) return
 
-  const res = await fetch('https://mentor-hackson.vercel.app/api/post', {
-  // const res = await fetch('http://host.docker.internal:3020/api/post', { // ローカル環境の場合
+  const res = await fetch(DOCKERPRISMAURL + '/api/post', { 
     method: 'POST',
     cache: 'no-store',
     headers: {
